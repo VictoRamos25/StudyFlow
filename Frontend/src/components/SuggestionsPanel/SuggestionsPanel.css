@@ -1,0 +1,167 @@
+.sugg-panel {
+  background: #0d1420;
+  border: 1px solid rgba(120,160,220,0.12);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.sugg-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(120,160,220,0.08);
+}
+
+.sugg-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #e8eeff;
+}
+
+.sugg-panel__icon {
+  background: linear-gradient(135deg,#7eb8f7,#a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sugg-panel__badge {
+  background: linear-gradient(135deg,#7eb8f7,#a78bfa);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.sugg-panel__generate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(126,184,247,0.08);
+  border: 1px solid rgba(126,184,247,0.2);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #7eb8f7;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.sugg-panel__generate:hover { background: rgba(126,184,247,0.14); }
+.sugg-panel__generate--loading { opacity: 0.7; cursor: not-allowed; }
+.sugg-panel__generate:disabled { cursor: not-allowed; }
+
+.sugg-spinner {
+  width: 12px; height: 12px;
+  border: 1.5px solid rgba(126,184,247,0.3);
+  border-top-color: #7eb8f7;
+  border-radius: 50%;
+  animation: sugg-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes sugg-spin { to { transform: rotate(360deg); } }
+
+/* ── Empty ── */
+.sugg-empty {
+  padding: 24px 20px;
+  text-align: center;
+  color: #4a5568;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.sugg-empty p { margin: 0; }
+
+/* ── List ── */
+.sugg-list { padding: 8px 0; }
+
+.sugg-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(120,160,220,0.06);
+  transition: background 0.15s;
+}
+.sugg-item:last-child { border-bottom: none; }
+.sugg-item:hover { background: rgba(255,255,255,0.02); }
+
+.sugg-item__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sugg-item__emoji { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+.sugg-item__body { flex: 1; min-width: 0; }
+
+.sugg-item__tipo {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* Tipo colours */
+.sugg-item--spaced_repetition .sugg-item__tipo { background: rgba(126,184,247,0.1); color: #7eb8f7; }
+.sugg-item--desequilibrio     .sugg-item__tipo { background: rgba(251,191,36,0.1);  color: #fbbf24; }
+.sugg-item--exame_proximo     .sugg-item__tipo { background: rgba(248,113,113,0.1); color: #f87171; }
+.sugg-item--pomodoro          .sugg-item__tipo { background: rgba(52,211,153,0.1);  color: #34d399; }
+
+.sugg-item__msg {
+  font-size: 0.82rem;
+  color: #7a8ba8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Actions */
+.sugg-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.sugg-cta {
+  background: none;
+  border: 1px solid rgba(126,184,247,0.25);
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  color: #7eb8f7;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.sugg-cta:hover { background: rgba(126,184,247,0.08); }
+
+.sugg-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a5568;
+  padding: 4px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+.sugg-dismiss:hover { color: #f87171; background: rgba(248,113,113,0.08); }

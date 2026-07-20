@@ -1,0 +1,87 @@
+.sf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sf-field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sf-field__label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #7a8ba8;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.sf-field__hint {
+  font-size: 0.78rem;
+  color: #7a8ba8;
+}
+
+.sf-field__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sf-field__input {
+  width: 100%;
+  padding: 13px 16px;
+  background: #111827;
+  border: 1px solid rgba(120, 160, 220, 0.12);
+  border-radius: 12px;
+  color: #e8eeff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sf-field__input::placeholder { color: #4a5568; }
+
+.sf-field__input:focus {
+  border-color: rgba(126, 184, 247, 0.45);
+  box-shadow: 0 0 0 3px rgba(126, 184, 247, 0.08);
+}
+
+.sf-field--error .sf-field__input {
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.sf-field__input--pl { padding-left: 44px; }
+.sf-field__input--pr { padding-right: 44px; }
+
+.sf-field__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.sf-field__icon--left  { left: 14px; }
+.sf-field__icon--right { right: 12px; }
+
+.sf-field__icon--btn {
+  pointer-events: all;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.sf-field__wrapper:focus-within .sf-field__icon--left { color: #7eb8f7; }
+.sf-field__icon--btn:hover { color: #7eb8f7; }
+
+.sf-field__error {
+  font-size: 0.78rem;
+  color: #f87171;
+  margin: 0;
+}

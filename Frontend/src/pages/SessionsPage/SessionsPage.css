@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap');
+
+/* ── Tokens ─────────────────────────────────────────────────── */
+:root {
+  --bg: #080C14;
+  --bg-card: #0D1420;
+  --bg-input: #111827;
+  --border: rgba(120,160,220,0.12);
+  --border-focus: rgba(126,184,247,0.45);
+  --text-primary: #E8EEFF;
+  --text-secondary: #7A8BA8;
+  --text-muted: #4A5568;
+  --accent-blue: #7EB8F7;
+  --accent-purple: #A78BFA;
+  --accent-gradient: linear-gradient(135deg,#7EB8F7 0%,#A78BFA 100%);
+  --success: #34D399;
+  --warning: #FBBF24;
+  --error: #F87171;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ── Page shell ─────────────────────────────────────────────── */
+.sess-root {
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Particles ──────────────────────────────────────────────── */
+.sess-particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.sess-particle {
+  position: absolute; width: 2px; height: 2px; border-radius: 50%;
+  background: var(--accent-blue); opacity: 0;
+  animation: sp-float 9s infinite;
+  animation-delay: calc(var(--i) * 0.6s);
+  left: calc(var(--i) * 7.1%); top: 100%;
+}
+.sess-particle:nth-child(odd) { background: var(--accent-purple); }
+@keyframes sp-float {
+  0%   { transform: translateY(0); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-105vh); opacity: 0; }
+}
+
+/* ── Main ───────────────────────────────────────────────────── */
+.sess-main {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 48px 48px 80px;
+}
+
+/* ── Page header ────────────────────────────────────────────── */
+.sess-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 24px; margin-bottom: 36px;
+}
+.sess-header__eyebrow {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent-blue); margin: 0 0 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sess-header__eyebrow::before {
+  content: ''; display: block; width: 20px; height: 1px; background: var(--accent-blue);
+}
+.sess-header__title {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 800;
+  margin: 0 0 8px; line-height: 1.15;
+}
+.sess-header__title span {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.sess-header__sub { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+
+/* ── Add button ─────────────────────────────────────────────── */
+.sess-add-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--accent-gradient); border: none; cursor: pointer;
+  padding: 11px 20px; border-radius: 12px;
+  font-size: 0.88rem; font-weight: 600; color: #fff;
+  white-space: nowrap; flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(126,184,247,0.25);
+  transition: opacity 0.2s, transform 0.15s;
+}
+.sess-add-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── Stats bar ──────────────────────────────────────────────── */
+.sess-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-bottom: 28px;
+}
+.sess-stat {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 20px;
+  transition: border-color 0.2s;
+}
+.sess-stat:hover { border-color: rgba(126,184,247,0.2); }
+.sess-stat__icon { font-size: 1.4rem; }
+.sess-stat__value {
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+  color: var(--accent-blue); line-height: 1.1;
+}
+.sess-stat__label { font-size: 0.76rem; color: var(--text-secondary); margin-top: 2px; }
+
+/* ── Toolbar / filters ──────────────────────────────────────── */
+.sess-toolbar { margin-bottom: 24px; }
+.sess-filter-row {
+  display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;
+}
+.sess-field--filter { flex: 1; min-width: 140px; }
+.sess-field--filter label {
+  display: block; font-size: 0.75rem; font-weight: 500;
+  color: var(--text-secondary); margin-bottom: 6px; letter-spacing: .04em;
+}
+.sess-field--filter select,
+.sess-field--filter input[type="date"] {
+  width: 100%;
+  background: var(--bg-input); border: 1px solid var(--border);
+  color: var(--text-primary); border-radius: 10px;
+  padding: 9px 12px; font-size: 0.85rem; font-family: var(--font-body);
+  transition: border-color 0.2s; outline: none;
+}
+.sess-field--filter select:focus,
+.sess-field--filter input[type="date"]:focus { border-color: var(--border-focus); }
+.sess-clear-btn { align-self: flex-end; white-space: nowrap; margin-bottom: 1px; }
+
+/* ── Session list ───────────────────────────────────────────── */
+.sess-list { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Session card ───────────────────────────────────────────── */
+.sess-card {
+  display: flex;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  animation: sess-fade-in 0.4s both;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.sess-card:hover { border-color: rgba(126,184,247,0.2); transform: translateY(-2px); }
+@keyframes sess-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sess-card__accent { width: 4px; flex-shrink: 0; }
+.sess-card__body { flex: 1; padding: 16px 20px; }
+.sess-card__head {
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;
+}
+.sess-card__info { display: flex; flex-direction: column; gap: 2px; }
+.sess-card__subject { font-weight: 600; font-size: 0.95rem; color: var(--text-primary); }
+.sess-card__date { font-size: 0.78rem; color: var(--text-secondary); }
+
+.sess-card__stats { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.sess-card__stat {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.82rem; color: var(--text-secondary);
+}
+.sess-tipo-badge {
+  font-size: 0.72rem; font-weight: 500;
+  padding: 2px 8px; border-radius: 6px;
+  background: rgba(126,184,247,0.1); color: var(--accent-blue);
+}
+.sess-tipo-badge--pomodoro { background: rgba(251,191,36,0.1); color: var(--warning); }
+
+.sess-card__notas {
+  margin: 10px 0 0; font-size: 0.82rem; color: var(--text-secondary);
+  line-height: 1.5; padding-top: 10px; border-top: 1px solid var(--border);
+}
+
+/* Card menu */
+.sess-card__menu { position: relative; }
+.sess-card__menu-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-secondary); padding: 4px; border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.sess-card__menu-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+.sess-card__dropdown {
+  position: absolute; right: 0; top: calc(100% + 6px);
+  background: #1a2235; border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; min-width: 130px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 50;
+  animation: dropdown-in 0.15s ease;
+}
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sess-card__dropdown-item {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 14px; font-size: 0.83rem; color: var(--text-secondary);
+  font-family: var(--font-body);
+  transition: background 0.15s, color 0.15s;
+}
+.sess-card__dropdown-item:hover { background: rgba(126,184,247,0.07); color: var(--text-primary); }
+.sess-card__dropdown-item--danger:hover { background: rgba(248,113,113,0.08); color: var(--error); }
+
+/* ── Empty / loading / error ────────────────────────────────── */
+.sess-loading { display: flex; justify-content: center; padding: 64px 0; }
+.sess-spinner {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid rgba(126,184,247,0.15);
+  border-top-color: var(--accent-blue);
+  animation: sess-spin 0.8s linear infinite;
+}
+@keyframes sess-spin { to { transform: rotate(360deg); } }
+
+.sess-error {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2);
+  color: var(--error); border-radius: 12px; padding: 14px 18px; font-size: 0.88rem;
+}
+.sess-empty { text-align: center; padding: 72px 24px; color: var(--text-secondary); }
+.sess-empty__icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(126,184,247,0.06); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; color: var(--text-muted);
+}
+.sess-empty p { margin: 0 0 6px; font-size: 0.95rem; }
+.sess-empty__sub { font-size: 0.82rem; color: var(--text-muted); }
+
+/* ── Modal overlay ──────────────────────────────────────────── */
+.sess-modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  animation: modal-bg-in 0.2s;
+}
+@keyframes modal-bg-in { from { opacity: 0; } to { opacity: 1; } }
+
+.sess-modal {
+  background: #0d1623; border: 1px solid var(--border);
+  border-radius: 20px; width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto;
+  animation: modal-in 0.25s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.93) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.sess-modal__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 28px 0;
+}
+.sess-modal__title {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin: 0;
+}
+.sess-modal__close {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-secondary); padding: 6px; border-radius: 8px; transition: color 0.2s;
+}
+.sess-modal__close:hover { color: var(--error); }
+
+/* ── Form ───────────────────────────────────────────────────── */
+.sess-form { padding: 20px 28px 28px; display: flex; flex-direction: column; gap: 18px; }
+.sess-form__error {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2);
+  color: var(--error); border-radius: 10px; padding: 10px 14px; font-size: 0.84rem;
+}
+.sess-form__row { display: flex; gap: 14px; }
+.sess-form__row .sess-field { flex: 1; }
+
+.sess-field { display: flex; flex-direction: column; gap: 6px; }
+.sess-field label { font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); letter-spacing: .04em; }
+.sess-field__optional { color: var(--text-muted); font-weight: 400; }
+.sess-field__hint { font-size: 0.75rem; color: var(--accent-blue); }
+.sess-field__unit { font-size: 0.82rem; color: var(--text-secondary); margin-left: 4px; }
+
+.sess-field input,
+.sess-field select,
+.sess-field textarea {
+  background: var(--bg-input); border: 1px solid var(--border);
+  color: var(--text-primary); border-radius: 10px;
+  padding: 9px 12px; font-size: 0.88rem; font-family: var(--font-body);
+  transition: border-color 0.2s; width: 100%; outline: none;
+}
+.sess-field input:focus,
+.sess-field select:focus,
+.sess-field textarea:focus { border-color: var(--border-focus); }
+.sess-field textarea { resize: vertical; min-height: 72px; }
+
+.sess-field--inline { flex-direction: row; align-items: center; gap: 6px; }
+.sess-field--inline input { width: 80px; flex-shrink: 0; }
+
+/* ── Stars ──────────────────────────────────────────────────── */
+.sess-stars { display: flex; align-items: center; gap: 4px; }
+.sess-star {
+  background: none; border: none; cursor: pointer;
+  font-size: 1.4rem; color: var(--text-muted);
+  transition: color 0.15s, transform 0.1s; padding: 0;
+}
+.sess-star--active { color: var(--warning); }
+.sess-star--humor.sess-star--active { color: var(--success); }
+.sess-star:hover { transform: scale(1.2); }
+.sess-stars__label { font-size: 0.78rem; color: var(--text-secondary); margin-left: 6px; white-space: nowrap; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.sess-modal__actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
+.sess-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: none; cursor: pointer; border-radius: 10px;
+  padding: 9px 18px; font-size: 0.88rem; font-weight: 600;
+  font-family: var(--font-body); transition: all 0.2s;
+}
+.sess-btn--primary {
+  background: var(--accent-gradient); color: #fff;
+  box-shadow: 0 2px 12px rgba(126,184,247,0.2);
+}
+.sess-btn--primary:hover { opacity: 0.9; }
+.sess-btn--primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.sess-btn--ghost {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.sess-btn--ghost:hover { background: rgba(255,255,255,0.07); color: var(--text-primary); }
+.sess-btn--danger { background: rgba(248,113,113,0.15); border: 1px solid rgba(248,113,113,0.3); color: var(--error); }
+.sess-btn--danger:hover { background: rgba(248,113,113,0.25); }
+.sess-btn--danger:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Confirm modal ──────────────────────────────────────────── */
+.sess-confirm { padding: 32px 28px; text-align: center; }
+.sess-confirm__icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--error); margin: 0 auto 16px;
+}
+.sess-confirm p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.6; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sess-main { padding: 28px 16px 60px; }
+  .sess-stats { grid-template-columns: repeat(2, 1fr); }
+  .sess-header { flex-direction: column; }
+  .sess-filter-row { flex-direction: column; }
+  .sess-form { padding: 16px 20px 24px; }
+  .sess-form__row { flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .sess-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+/* ─────────────────────────────────────────────────────────────
+   ADICIONAR ao final do ficheiro existente SessionsPage.css
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Header actions (agrupa botões Nova sessão + Pomodoro) ──── */
+.sess-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── Botão Pomodoro ──────────────────────────────────────────── */
+.sess-pomodoro-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(126, 184, 247, 0.25);
+  background: rgba(126, 184, 247, 0.06);
+  color: var(--accent-blue);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, transform 0.12s;
+  white-space: nowrap;
+}
+.sess-pomodoro-btn:hover {
+  background: rgba(126, 184, 247, 0.12);
+  border-color: rgba(126, 184, 247, 0.5);
+  transform: translateY(-1px);
+}
+.sess-pomodoro-btn__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ── Banner Pomodoro no modal de sessão ──────────────────────── */
+.sess-pomo-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 0 28px;
+  background: rgba(126, 184, 247, 0.07);
+  border: 1px solid rgba(126, 184, 247, 0.2);
+  border-radius: 12px;
+}
+.sess-pomo-banner__emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.sess-pomo-banner__label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.sess-pomo-banner__value {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+/* ── Responsivo ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .sess-header__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .sess-pomodoro-btn {
+    justify-content: center;
+  }
+}

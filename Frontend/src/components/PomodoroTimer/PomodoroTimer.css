@@ -1,0 +1,377 @@
+/* ── Overlay ─────────────────────────────────────────────────── */
+.pomo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 16, 0.82);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: pomo-bg-in 0.2s ease;
+}
+@keyframes pomo-bg-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── Modal ───────────────────────────────────────────────────── */
+.pomo-modal {
+  background: #0D1420;
+  border: 1px solid rgba(120, 160, 220, 0.14);
+  border-radius: 20px;
+  padding: 28px 32px 32px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: pomo-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+@keyframes pomo-in {
+  from { opacity: 0; transform: scale(0.92) translateY(14px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.pomo-modal--summary {
+  gap: 18px;
+  max-width: 360px;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.pomo-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pomo-phase-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 0.4s;
+}
+
+.pomo-header__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pomo-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(122, 139, 168, 0.8);
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+}
+.pomo-icon-btn:hover {
+  color: #E8EEFF;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Subject field ───────────────────────────────────────────── */
+.pomo-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pomo-field label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #7A8BA8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pomo-field select,
+.pomo-field input {
+  background: #111827;
+  border: 1px solid rgba(120, 160, 220, 0.14);
+  border-radius: 10px;
+  color: #E8EEFF;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 9px 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.pomo-field select:focus,
+.pomo-field input:focus {
+  border-color: rgba(126, 184, 247, 0.45);
+}
+
+/* ── Ring ────────────────────────────────────────────────────── */
+.pomo-ring-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+}
+
+.pomo-ring {
+  display: block;
+}
+
+.pomo-ring__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pomo-ring__time {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.4s;
+}
+
+.pomo-ring__cycle {
+  font-size: 0.78rem;
+  color: #7A8BA8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Dots ────────────────────────────────────────────────────── */
+.pomo-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pomo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(126, 184, 247, 0.15);
+  border: 1.5px solid rgba(126, 184, 247, 0.3);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.pomo-dot--done {
+  background: #7EB8F7;
+  border-color: #7EB8F7;
+  box-shadow: 0 0 8px rgba(126, 184, 247, 0.5);
+}
+
+/* ── Stats row ───────────────────────────────────────────────── */
+.pomo-stats-row {
+  display: flex;
+  gap: 20px;
+  font-size: 0.82rem;
+  color: #7A8BA8;
+  font-weight: 500;
+}
+
+/* ── Controls ────────────────────────────────────────────────── */
+.pomo-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.pomo-btn {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.15s, transform 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.pomo-btn:hover { opacity: 0.88; }
+.pomo-btn:active { transform: scale(0.97); }
+.pomo-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.pomo-btn--primary {
+  background: linear-gradient(135deg, #7EB8F7 0%, #A78BFA 100%);
+  color: #060a10;
+  padding: 12px 28px;
+}
+
+.pomo-btn--play {
+  padding: 14px 36px;
+  font-size: 1rem;
+  border-radius: 14px;
+  min-width: 160px;
+}
+
+.pomo-btn--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #E8EEFF;
+  border: 1px solid rgba(120, 160, 220, 0.14);
+  padding: 10px 18px;
+}
+.pomo-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pomo-btn--icon {
+  padding: 12px;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+}
+
+.pomo-btn--finish {
+  background: rgba(255, 255, 255, 0.04);
+  color: #7A8BA8;
+  border: 1px solid rgba(120, 160, 220, 0.1);
+  width: 100%;
+  padding: 11px;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  transition: color 0.15s, background 0.15s;
+}
+.pomo-btn--finish:hover {
+  color: #E8EEFF;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Settings panel ──────────────────────────────────────────── */
+.pomo-settings-panel {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(120, 160, 220, 0.1);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pomo-settings__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #E8EEFF;
+  margin: 0;
+}
+
+.pomo-settings__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pomo-settings__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pomo-settings__field label {
+  font-size: 0.74rem;
+  color: #7A8BA8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pomo-settings__field input {
+  background: #111827;
+  border: 1px solid rgba(120, 160, 220, 0.14);
+  border-radius: 8px;
+  color: #E8EEFF;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.pomo-settings__field input:focus {
+  border-color: rgba(126, 184, 247, 0.45);
+}
+
+.pomo-settings__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ── Summary ─────────────────────────────────────────────────── */
+.pomo-summary__icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.pomo-summary__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #E8EEFF;
+  margin: 0;
+}
+
+.pomo-summary__sub {
+  color: #7A8BA8;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.pomo-summary__stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  padding: 16px 0;
+  border-top: 1px solid rgba(120, 160, 220, 0.1);
+  border-bottom: 1px solid rgba(120, 160, 220, 0.1);
+  width: 100%;
+}
+
+.pomo-summary__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pomo-summary__stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #7EB8F7, #A78BFA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pomo-summary__stat-label {
+  font-size: 0.78rem;
+  color: #7A8BA8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pomo-summary__actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-end;
+}
